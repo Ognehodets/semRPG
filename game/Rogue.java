@@ -4,9 +4,13 @@ public class Rogue extends Character {
 
     private int backstabChance = 20;// шанс ударить в спину двойным уроном в процентах
 
-    public Rogue(String name, String race, String gender) {
-        super(name, 10, race, gender, 5, 0, 5);
+    public Rogue(String name, int x, int y) {
+        super(name, 10, "human", "male", 5, 0, 5, x, y);
+    }
 
+    @Override
+    public String toString() {
+        return "Class: Rogue, " + super.toString();
     }
 
     @Override

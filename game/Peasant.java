@@ -2,8 +2,8 @@ package game;
 
 public class Peasant extends Character {
 
-    public Peasant(String name) {
-        super(name, 5, "human", "male", 1, 0, 1);
+    public Peasant(String name,int x, int y) {
+        super(name, 5, "human", "male", 1, 0, 1,x,y);
 
     }
 
@@ -13,11 +13,9 @@ public class Peasant extends Character {
     public String toString() {
         if (this.status == "dead") {
             System.out.println("Agriculture has suffered!");
-            return ("Name: " + name + ", gender: " + gender + ", race: " + race + ",  hp: " + hp + ", status: "
-                    + status);
+            return "Class: Peasant, " + super.toString(); 
         } else {
-            return ("Name: " + name + ", gender: " + gender + ", race: " + race + ",  hp: " + hp + ", status: "
-                    + status);
+            return "Class: Peasant, " + super.toString();
         }
     }
 }

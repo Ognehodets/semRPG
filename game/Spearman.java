@@ -1,10 +1,15 @@
 package game;
+
 public class Spearman extends Character {
     private int hp;
 
-    public Spearman(String name, String gender) {
-        super(name, 35, "orc", gender, 2, 1, 2);
+    public Spearman(String name, int x, int y) {
+        super(name, 35, "orc", "male", 2, 1, 2, x, y);
+    }
 
+    @Override
+    public String toString() {
+        return "Class: Spearman, " + super.toString();
     }
 
     @Override

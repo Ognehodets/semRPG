@@ -1,11 +1,16 @@
 package game;
+
 public class Crossbowman extends Character {
-    
+
     private int ingureChance = 20; // шанс увернуться при побеге в процентах
 
+    public Crossbowman(String name, int x, int y) {
+        super(name, 15, "human", "male", 5, 0, 6, x, y);
+    }
 
-    public Crossbowman(String name, String gender) {
-        super(name, 15, "human", gender, 5, 0, 6);
+    @Override
+    public String toString() {
+        return "Class: Crossbowman, " + super.toString();
     }
 
     @Override

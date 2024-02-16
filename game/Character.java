@@ -1,8 +1,10 @@
 package game;
 
+import java.util.List;
 import java.util.Random;
 
 public abstract class Character {
+
     protected Random random = new Random();
     protected String name;
     protected int hp;
@@ -16,8 +18,10 @@ public abstract class Character {
     private double hpToRetreat = 0.33; // минимальный уровень hp для попытки сбежать
     protected int fullPercent = 100;
     protected int chanceToRetreat = 20; // вероятность в процентах сбежать при низком уровне хп
+    public Position position;
 
-    public Character(String name, Integer hp, String race, String gender, int speed, int armor, int damage) {
+    public Character(String name, Integer hp, String race, String gender, int speed, int armor, int damage, int x,
+            int y) {
         this.maxHp = hp;
         this.name = name;
         this.hp = hp;
@@ -26,6 +30,20 @@ public abstract class Character {
         this.speed = speed;
         this.armor = armor;
         this.damage = damage;
+        this.position = new Position(x, y);
+    }
+
+    // находит ближайшего врага
+    public Character getTarget(List<Character> enemyTeam) {
+        Character target = enemyTeam.get(0);
+        double distance = this.position.getDistance(enemyTeam.get(0).position);
+        for (int i = 1; i < enemyTeam.size(); i++) {
+            if (this.position.getDistance(enemyTeam.get(i).position) < distance) {
+                distance = this.position.getDistance(enemyTeam.get(i).position);
+                target = enemyTeam.get(i);
+            }
+        }
+        return target;
     }
 
     // может использоваться при тактическом или территориальном сражении
@@ -89,7 +107,8 @@ public abstract class Character {
 
     @Override
     public String toString() {
-        return ("Name: " + name + ", gender: " + gender + ", race: " + race + ",  hp: " + hp + ", status: " + status);
+        return ("name: " + name + ", gender: " + gender + ", race: " + race + ",  hp: " + hp + ", status: " + status
+                + ", x: " + position.x + ", y: " + position.y);
     }
 
 }

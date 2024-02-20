@@ -1,11 +1,13 @@
 package game;
 
+import java.util.List;
+
 public class Rogue extends Character {
 
     private int backstabChance = 20;// шанс ударить в спину двойным уроном в процентах
 
     public Rogue(String name, int x, int y) {
-        super(name, 10, "human", "male", 5, 0, 5, x, y);
+        super(name, 10, "human", "male", 2, 0, 5, x, y);
     }
 
     @Override
@@ -36,5 +38,10 @@ public class Rogue extends Character {
                 }
             }
         }
+    }
+
+    @Override
+    public void step(List<Character> enemyTeam) {
+        
     }
 }

@@ -1,12 +1,19 @@
 package game;
 
+/*Доработать классы лучников. Лучник должен во первых проверить жив ли он и есть ли у него стрелы, если нет то завершить метод.
+Если всё да, то найти ближайшего противника и выстрелить по немы и, соответственно потратить одну стрелу.
+Реализовать весь функционал лучников в методе step(). */
+
+import java.util.List;
+
 public class Sniper extends Character {
 
+    private int arrows = 10;
     private double minHpToPowerShot = 0.2;// минимальный уровень hp в процентах для усиленной атаки
     private int maxPowerMultiplier = 3; // максимальный множитель усиления атаки
 
     public Sniper(String name, int x, int y) {
-        super(name, 20, "elf", "female", 5, 0, 7, x, y);
+        super(name, 20, "elf", "female", 3, 0, 7, x, y);
     }
 
     @Override
@@ -27,6 +34,17 @@ public class Sniper extends Character {
             this.powerShot();
         } else {
             super.attack(character);
+        }
+    }
+
+    @Override
+    public void step(List<Character> enemyTeam) {
+        if ((this.status != "alive") || (this.arrows == 0)) {
+            return;
+        } else {
+            Character enemy = getTarget(enemyTeam);
+            this.attack(enemy);
+            this.arrows--;
         }
     }
 

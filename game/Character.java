@@ -1,9 +1,13 @@
 package game;
 
+/*Добавить в абстрактный класс int поле инициатива. В классах наследников инициализировать это поле. Крестьянин = 0, маги=1, пехота=2, лучники=3. 
+В мэйне сделать так, чтобы сначала делали ход персонажи с наивысшей инициативой из обеих комманд а с наименьшей в конце. */
+
+
 import java.util.List;
 import java.util.Random;
 
-public abstract class Character {
+public abstract class Character implements InterfaceStep{
 
     protected Random random = new Random();
     protected String name;
@@ -11,7 +15,7 @@ public abstract class Character {
     protected int maxHp;
     protected String race;
     protected String gender;
-    protected int speed;
+    public int speed;
     protected int armor;
     protected int damage;
     protected String status = "alive";
@@ -38,7 +42,7 @@ public abstract class Character {
         Character target = enemyTeam.get(0);
         double distance = this.position.getDistance(enemyTeam.get(0).position);
         for (int i = 1; i < enemyTeam.size(); i++) {
-            if (this.position.getDistance(enemyTeam.get(i).position) < distance) {
+            if ((this.position.getDistance(enemyTeam.get(i).position) < distance) &&(enemyTeam.get(i)).status=="alive") {
                 distance = this.position.getDistance(enemyTeam.get(i).position);
                 target = enemyTeam.get(i);
             }

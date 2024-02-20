@@ -1,5 +1,7 @@
 package game;
 
+import java.util.List;
+
 public class Spearman extends Character {
     private int hp;
 
@@ -22,6 +24,11 @@ public class Spearman extends Character {
         } else {
             this.hp = this.hp - character.damage + this.armor;
         }
+    }
+
+    @Override
+    public void step(List<Character> enemyTeam) {
+       
     }
 
 }

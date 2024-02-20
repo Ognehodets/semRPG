@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 import game.*;
 import game.Character;
@@ -36,7 +37,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Random random = new Random();
+        // Random random = new Random();
         ArrayList<Character> team1 = new ArrayList<>();
         ArrayList<Character> team2 = new ArrayList<>();
         int teamSize = 10;
@@ -59,15 +60,39 @@ public class Main {
             System.out.println(team2.get(i));
         }
 
-        // выбор случайного персонажа из 1 команды
-        Character hero = team1.get(random.nextInt(teamSize));
-        System.out.println("Member of team 1: ");
-        System.out.println(hero);
-        // выбор ближайшего к нему врага
-        Character enemy = hero.getTarget(team2);
-        System.out.println("Member of team 2: ");
-        System.out.println(enemy);
-        System.out.println("Distance betwean them: ");
-        System.out.println(hero.position.getDistance(enemy.position));
+        // всех в одну кучу сгрупировали
+        ArrayList<Character> allChar = new ArrayList<>();
+        allChar.addAll(team1);
+        allChar.addAll(team2);
+        allChar.sort(new Comparator<Character>() {
+            @Override
+            public int compare(Character char1, Character char2) {
+                return char2.speed - char1.speed;
+            }
+        });
+
+        // печать печать всех персонажей
+        System.out.println("All characters: ");
+        for (Character hero : allChar) {
+            System.out.println(hero);
+        }
+
+        // прокрутить 10 ходов
+        for (int i = 0; i < 10; i++) {
+            for (Character hero : allChar) {
+                if (team1.contains(hero)) {
+                    hero.step(team2);
+                } else {
+                    hero.step(team1);
+                }
+            }
+        }
+
+        // печать всех персонажей после 10 ходов
+        System.out.println("All characters: ");
+        for (Character hero : allChar) {
+            System.out.println(hero);
+        }
+
     }
 }

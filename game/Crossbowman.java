@@ -1,11 +1,17 @@
 package game;
 
-public class Crossbowman extends Character {
+import java.util.List;
 
+/*Доработать классы лучников. Лучник должен во первых проверить жив ли он и есть ли у него стрелы, если нет то завершить метод.
+Если всё да, то найти ближайшего противника и выстрелить по немы и, соответственно потратить одну стрелу.
+Реализовать весь функционал лучников в методе step(). */
+
+public class Crossbowman extends Character {
+    private int arrows = 15;
     private int ingureChance = 20; // шанс увернуться при побеге в процентах
 
     public Crossbowman(String name, int x, int y) {
-        super(name, 15, "human", "male", 5, 0, 6, x, y);
+        super(name, 15, "human", "male", 3, 0, 6, x, y);
     }
 
     @Override
@@ -27,6 +33,17 @@ public class Crossbowman extends Character {
             } else {
                 this.hp -= character.damage;
             }
+        }
+    }
+
+    @Override
+    public void step(List<Character> enemyTeam) {
+        if ((this.status != "alive") || (this.arrows == 0)) {
+            return;
+        } else {
+            Character enemy = getTarget(enemyTeam);
+            this.attack(enemy);
+            this.arrows--;
         }
     }
 }

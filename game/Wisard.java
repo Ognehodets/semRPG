@@ -1,11 +1,13 @@
 package game;
 
+import java.util.List;
+
 public class Wisard extends Character {
     private int fireAttackChance = 50;// шанс в процентах дополнительно к атаке сотворить огненную стрелу
     private int maxFireDamage = 3;// максимальный дополнительный магический урон
 
     public Wisard(String name, int x, int y) {
-        super(name, 35, "dark elf", "female", 4, 0, 3, x, y);
+        super(name, 35, "dark elf", "female", 1, 0, 3, x, y);
     }
 
     @Override
@@ -43,6 +45,11 @@ public class Wisard extends Character {
     public void attack(Character character) {
         this.fireArrow(character);
         super.attack(character);
+    }
+
+    @Override
+    public void step(List<Character> enemyTeam) {
+        
     }
 
 }

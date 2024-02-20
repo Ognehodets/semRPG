@@ -1,9 +1,11 @@
 package game;
 
+import java.util.List;
+
 public class Peasant extends Character {
 
     public Peasant(String name,int x, int y) {
-        super(name, 5, "human", "male", 1, 0, 1,x,y);
+        super(name, 5, "human", "male", 0, 0, 1,x,y);
 
     }
 
@@ -17,5 +19,10 @@ public class Peasant extends Character {
         } else {
             return "Class: Peasant, " + super.toString();
         }
+    }
+
+    @Override
+    public void step(List<Character> enemyTeam) {
+       
     }
 }

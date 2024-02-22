@@ -37,7 +37,7 @@ public class Crossbowman extends Character {
     }
 
     @Override
-    public void step(List<Character> enemyTeam) {
+    public void step(List<Character> enemyTeam,List<Character> myTeam) {
         if ((this.status != "alive") || (this.arrows == 0)) {
             return;
         } else {

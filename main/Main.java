@@ -6,6 +6,9 @@ import java.util.Random;
 import game.*;
 import game.Character;
 
+
+
+
 public class Main {
 
     private static String getName() {
@@ -81,9 +84,9 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             for (Character hero : allChar) {
                 if (team1.contains(hero)) {
-                    hero.step(team2);
+                    hero.step(team2,team1);
                 } else {
-                    hero.step(team1);
+                    hero.step(team1,team2);
                 }
             }
         }

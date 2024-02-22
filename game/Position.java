@@ -19,8 +19,21 @@ public class Position {
         return y;
     }
 
-public double getDistance (Position enemyPosition){
-    return (double) Math.sqrt((this.x-enemyPosition.x)*(this.x-enemyPosition.x)+(this.y-enemyPosition.y)*(this.y-enemyPosition.y));
-} 
+    public double getDistance(Position enemyPosition) {
+        return (double) Math.sqrt((this.x - enemyPosition.x) * (this.x - enemyPosition.x)
+                + (this.y - enemyPosition.y) * (this.y - enemyPosition.y));
+    }
+
+    public Position getDifference(Position target) {
+        Position dif = new Position(x - target.x, y - target.y);
+        return dif;
+    }
+
+    // почему-то не хочет этот метод переопределять
+
+    // @Override
+    // public boolean equals(Position target) {
+    // return x == target.x && y == target.y;
+    // }
 
 }

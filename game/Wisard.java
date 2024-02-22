@@ -48,7 +48,7 @@ public class Wisard extends Character {
     }
 
     @Override
-    public void step(List<Character> enemyTeam) {
+    public void step(List<Character> enemyTeam,List<Character> myTeam) {
         
     }
 

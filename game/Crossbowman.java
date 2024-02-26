@@ -16,7 +16,11 @@ public class Crossbowman extends Character {
 
     @Override
     public String toString() {
-        return "Class: Crossbowman, " + super.toString();
+        return super.toString()+", arrows: "+arrows;
+    }
+
+    public String getInfo(){
+        return "Crossbowman";
     }
 
     @Override

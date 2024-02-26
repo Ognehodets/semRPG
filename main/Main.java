@@ -3,13 +3,16 @@ package main;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Scanner;
+
 import game.*;
 import game.Character;
 
-
-
-
 public class Main {
+
+    public static ArrayList<Character> darkTeam = new ArrayList<>();
+    public static ArrayList<Character> holyTeam = new ArrayList<>();
+    public static ArrayList<Character> allTeam = new ArrayList<>();
 
     private static String getName() {
         return String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]);
@@ -40,62 +43,56 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Random random = new Random();
-        ArrayList<Character> team1 = new ArrayList<>();
-        ArrayList<Character> team2 = new ArrayList<>();
         int teamSize = 10;
 
         // наполнение первой и второй команды
-        for (int i = 0; i < teamSize; i++) {
-            team1.add(creatRandomCharacter(getName(), i, 0));
-            team2.add(creatRandomCharacter(getName(), i, 9));
+        for (int i = 1; i < teamSize + 1; i++) {
+            darkTeam.add(creatRandomCharacter(getName(), i, 1));
+            holyTeam.add(creatRandomCharacter(getName(), i, 10));
         }
 
-        // печать первой команды
-        System.out.println("Team 1: ");
-        for (int i = 0; i < teamSize; i++) {
-            System.out.println(team1.get(i));
-        }
+        // // всех в одну кучу сгрупировали
 
-        // печать второй команды
-        System.out.println("Team 2: ");
-        for (int i = 0; i < teamSize; i++) {
-            System.out.println(team2.get(i));
-        }
-
-        // всех в одну кучу сгрупировали
-        ArrayList<Character> allChar = new ArrayList<>();
-        allChar.addAll(team1);
-        allChar.addAll(team2);
-        allChar.sort(new Comparator<Character>() {
+        allTeam.addAll(darkTeam);
+        allTeam.addAll(holyTeam);
+        allTeam.sort(new Comparator<Character>() {
             @Override
             public int compare(Character char1, Character char2) {
                 return char2.speed - char1.speed;
             }
         });
 
-        // печать печать всех персонажей
-        System.out.println("All characters: ");
-        for (Character hero : allChar) {
-            System.out.println(hero);
-        }
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            View.view();
+            scanner.nextLine();
+            int sumHpDark = 0;
+            int sumHpHolly = 0;
+            for (Character dark : darkTeam) {
+                sumHpDark += dark.getHp();
+            }
+            if (sumHpDark == 0) {
+                System.out.println("HolyTeam wins!!!!");
+                break;
+            }
 
-        // прокрутить 10 ходов
-        for (int i = 0; i < 10; i++) {
-            for (Character hero : allChar) {
-                if (team1.contains(hero)) {
-                    hero.step(team2,team1);
-                } else {
-                    hero.step(team1,team2);
-                }
+            for (Character holy : holyTeam) {
+                sumHpHolly += holy.getHp();
+            }
+            if (sumHpHolly == 0) {
+                System.out.println("DarkTeam wins!!!!");
+                break;
+            }
+
+            for (Character unit : allTeam) {
+                if (holyTeam.contains(unit))
+                    unit.step(darkTeam, holyTeam);
+                else
+                    unit.step(holyTeam, darkTeam);
+
             }
         }
 
-        // печать всех персонажей после 10 ходов
-        System.out.println("All characters: ");
-        for (Character hero : allChar) {
-            System.out.println(hero);
-        }
-
+        // scanner.close();
     }
 }

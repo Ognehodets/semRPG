@@ -12,7 +12,11 @@ public class Wisard extends Character {
 
     @Override
     public String toString() {
-        return "Class: Wisard, " + super.toString();
+        return super.toString();
+    }
+
+    public String getInfo(){
+        return "Wizard";
     }
 
     // к атаке с вероятностью 50% может сотворить огненную стрелу

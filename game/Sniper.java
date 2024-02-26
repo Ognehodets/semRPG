@@ -18,7 +18,11 @@ public class Sniper extends Character {
 
     @Override
     public String toString() {
-        return "Class: Sniper, " + super.toString();
+        return super.toString()+", arrows: "+arrows;
+    }
+
+    public String getInfo(){
+        return "Sniper";
     }
 
     // при снижении хп ниже 20 % наносит от 2 до 3-кратного урона

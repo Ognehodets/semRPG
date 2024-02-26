@@ -11,7 +11,12 @@ public class Spearman extends Character {
 
     @Override
     public String toString() {
-        return "Class: Spearman, " + super.toString();
+        return super.toString();
+    }
+
+
+    public String getInfo(){
+        return "Alebarder";
     }
 
     @Override
@@ -45,7 +50,7 @@ public class Spearman extends Character {
 
             }
             for (Character friend : myTeam) {
-                if ((friend.position.x == newPosition.x) && (friend.position.y == newPosition.y)) {
+                if ((friend.position.x == newPosition.x) && (friend.position.y == newPosition.y) && (friend.status=="alive")) {
                     return;
                 }
                 

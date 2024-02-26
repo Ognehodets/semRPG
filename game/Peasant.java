@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Peasant extends Character {
 
-    public Peasant(String name,int x, int y) {
-        super(name, 5, "human", "male", 0, 0, 1,x,y);
+    public Peasant(String name, int x, int y) {
+        super(name, 5, "human", "male", 0, 0, 1, x, y);
 
     }
 
@@ -13,16 +13,15 @@ public class Peasant extends Character {
 
     @Override
     public String toString() {
-        if (this.status == "dead") {
-            System.out.println("Agriculture has suffered!");
-            return "Class: Peasant, " + super.toString(); 
-        } else {
-            return "Class: Peasant, " + super.toString();
-        }
+        return super.toString();
+    }
+
+    public String getInfo() {
+        return "Peasant";
     }
 
     @Override
     public void step(List<Character> enemyTeam, List<Character> myTeam) {
-       
+
     }
 }

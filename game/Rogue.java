@@ -14,7 +14,11 @@ public class Rogue extends Character {
 
     @Override
     public String toString() {
-        return "Class: Rogue, " + super.toString();
+        return super.toString();
+    }
+
+    public String getInfo(){
+        return "Rogue";
     }
 
     @Override

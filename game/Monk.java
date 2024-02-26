@@ -12,7 +12,11 @@ public class Monk extends Character {
 
     @Override
     public String toString() {
-        return "Class: Monk, " + super.toString();
+        return super.toString();
+    }
+
+    public String getInfo(){
+        return "Monk";
     }
 
     public void heal(Character character) {

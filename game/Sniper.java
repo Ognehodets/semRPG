@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Sniper extends Character {
 
-    private int arrows = 10;
+    public int arrows = 15;
     private double minHpToPowerShot = 0.2;// минимальный уровень hp в процентах для усиленной атаки
     private int maxPowerMultiplier = 3; // максимальный множитель усиления атаки
 
@@ -18,10 +18,10 @@ public class Sniper extends Character {
 
     @Override
     public String toString() {
-        return super.toString()+", arrows: "+arrows;
+        return super.toString() + ", arrows: " + arrows;
     }
 
-    public String getInfo(){
+    public String getInfo() {
         return "Sniper";
     }
 
@@ -42,14 +42,21 @@ public class Sniper extends Character {
     }
 
     @Override
-    public void step(List<Character> enemyTeam,List<Character> myTeam) {
+    public void step(List<Character> enemyTeam, List<Character> myTeam) {
         if ((this.status != "alive") || (this.arrows == 0)) {
             return;
         } else {
             Character enemy = getTarget(enemyTeam);
             this.attack(enemy);
-            this.arrows--;
+            
         }
+        for (Character friend : myTeam) {
+            if (friend.getInfo().equals("Peasant")&&(!((Peasant)friend).isBusy)) {
+                ((Peasant) friend).isBusy = true;
+                return;
+            }
+        }
+        this.arrows--;
     }
 
 }

@@ -1,11 +1,14 @@
 package game;
 
+
 import java.util.List;
 
 public class Peasant extends Character {
 
+    boolean isBusy = false;
+
     public Peasant(String name, int x, int y) {
-        super(name, 5, "human", "male", 0, 0, 1, x, y);
+        super(name, 15, "human", "male", 0, 0, 1, x, y);
 
     }
 
@@ -22,6 +25,11 @@ public class Peasant extends Character {
 
     @Override
     public void step(List<Character> enemyTeam, List<Character> myTeam) {
+        if (!status.equals("alive")) {
+            return;
+
+        }
+        isBusy = false;
 
     }
 }

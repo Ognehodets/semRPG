@@ -1,3 +1,7 @@
+// маг лечит за один ход одного самого больного среди своих
+
+
+
 package main;
 
 import java.util.ArrayList;

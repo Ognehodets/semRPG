@@ -22,6 +22,7 @@ public abstract class Character implements InterfaceStep {
     protected int fullPercent = 100;
     protected int chanceToRetreat = 20; // вероятность в процентах сбежать при низком уровне хп
     public Position position;
+    
 
     public Character(String name, Integer hp, String race, String gender, int speed, int armor, int damage, int x,
             int y) {

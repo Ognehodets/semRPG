@@ -7,19 +7,20 @@ import java.util.List;
 Реализовать весь функционал лучников в методе step(). */
 
 public class Crossbowman extends Character {
-    private int arrows = 15;
     private int ingureChance = 20; // шанс увернуться при побеге в процентах
+    public int arrows = 15;
 
     public Crossbowman(String name, int x, int y) {
         super(name, 15, "human", "male", 3, 0, 6, x, y);
+
     }
 
     @Override
     public String toString() {
-        return super.toString()+", arrows: "+arrows;
+        return super.toString() + ", arrows: " + arrows;
     }
 
-    public String getInfo(){
+    public String getInfo() {
         return "Crossbowman";
     }
 
@@ -41,13 +42,22 @@ public class Crossbowman extends Character {
     }
 
     @Override
-    public void step(List<Character> enemyTeam,List<Character> myTeam) {
+    public void step(List<Character> enemyTeam, List<Character> myTeam) {
         if ((this.status != "alive") || (this.arrows == 0)) {
             return;
         } else {
             Character enemy = getTarget(enemyTeam);
             this.attack(enemy);
-            this.arrows--;
+
         }
+        for (Character friend : myTeam) {
+            if (friend.getInfo().equals("Peasant")&&(!((Peasant)friend).isBusy)) {
+                ((Peasant) friend).isBusy = true;
+                return;
+            }
+        }
+
+        this.arrows--;
+
     }
 }

@@ -65,7 +65,7 @@ public class Rogue extends Character {
 
             }
             for (Character friend : myTeam) {
-                if ((friend.position.x == newPosition.x) && (friend.position.y == newPosition.y)) {
+                if ((friend.position.x == newPosition.x) && (friend.position.y == newPosition.y)&& (friend.status=="alive")) {
                     return;
                 }
                

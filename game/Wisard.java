@@ -90,7 +90,7 @@ public class Wisard extends Character {
                 return;
             }
             sortTeam.getFirst().status = "alive";
-            sortTeam.getFirst().hp = sortTeam.getFirst().maxHp;
+            sortTeam.getFirst().hp = sortTeam.getFirst().maxHp/2;
             mana = 0;
             return;
 
